@@ -1,0 +1,11 @@
+{
+  "name": "roostermaker-client",
+  "version": "0.1.0",
+  "description": "Client side of the roostermaker application",
+  "scripts": {},
+  "author": "Peter Keijsers",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.13.0"
+  }
+}

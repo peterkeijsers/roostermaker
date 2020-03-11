@@ -1,0 +1,24 @@
+{
+  "name": "roostermaker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterkeijsers/roostermaker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterkeijsers/roostermaker/issues"
+  },
+  "homepage": "https://github.com/peterkeijsers/roostermaker#readme",
+  "devDependencies": {
+    "lerna": "^3.20.2"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
