@@ -6,6 +6,20 @@ use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
+    public string $layout;
+
+    /**
+     * 
+     * @param string $layout 
+     * @return void 
+     */
+    public function __construct(
+        string $layout = "1-column"
+    )
+    {
+        $this->layout = $layout;
+    }
+
     /**
      * Get the view / contents that represents the component.
      *

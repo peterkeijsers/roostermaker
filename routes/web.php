@@ -2,23 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+/**
+ * Dashboard routes
+ */
 Route::get('/', function () {
-    return view('dashboard');
+    return view('dashboard',);
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/availability', function () {
-    return view('availability');
-})->middleware(['auth'])->name('availability');
+/**
+ * Availability resource routes
+ */
+Route::resource('availability', \App\Http\Controllers\AvailabilityController::class);
 
-require __DIR__.'/auth.php';
+/**
+ * Authorization routes
+ */
+require __DIR__ . '/auth.php';

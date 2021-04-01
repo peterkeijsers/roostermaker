@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Availability;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AvailabilityController extends Controller
@@ -14,7 +15,9 @@ class AvailabilityController extends Controller
      */
     public function index()
     {
-        //
+        $userAvailabilities = Availability::all()->where('user_id', Auth::user()->id);
+
+        return view('availability', ['userAvailabilities' => $userAvailabilities]);
     }
 
     /**
@@ -35,7 +38,16 @@ class AvailabilityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedAttributes = $request->validate([
+            'date_from' => 'required',
+            'date_to' => 'required'
+        ]);
+
+        $availability = Availability::factory()->make($validatedAttributes);
+        $availability->user_id = Auth::user()->id;
+        $availability->save();
+
+        return redirect()->route('availability.index');
     }
 
     /**
@@ -46,7 +58,7 @@ class AvailabilityController extends Controller
      */
     public function show(Availability $availability)
     {
-        //
+        return view('availability-edit', ['availability' => $availability]);
     }
 
     /**
@@ -69,7 +81,15 @@ class AvailabilityController extends Controller
      */
     public function update(Request $request, Availability $availability)
     {
-        //
+        $validatedAttributes = $request->validate([
+            'date_from' => 'required',
+            'date_to' => 'required'
+        ]);
+
+        $availability->fill($validatedAttributes);
+        $availability->save();
+
+        return redirect()->route('availability.index');
     }
 
     /**
@@ -80,6 +100,8 @@ class AvailabilityController extends Controller
      */
     public function destroy(Availability $availability)
     {
-        //
+        $availability->delete();
+
+        return redirect()->route('availability.index');
     }
 }
